@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Watermelon Front application
+          Front application
         </p>
         <Login/>
       </header>
