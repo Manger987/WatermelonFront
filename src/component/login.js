@@ -29,6 +29,7 @@ class Login extends React.Component {
         ).then((response)=>{
           if (response.code === 200){
             console.log('responde:', response.data.token);
+            this.props.handleSuccessfulAuth(response.data);
             this.resetForm()
           }else if(response.code === 500){
             console.log('responde:', response);
