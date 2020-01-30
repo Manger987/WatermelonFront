@@ -1,4 +1,6 @@
 import React from 'react';
+// import { Form, Icon, Input, Button, Checkbox } from 'antd';
+// import Home from './home';
 
 class Login extends React.Component {
   
@@ -10,6 +12,10 @@ class Login extends React.Component {
     };
     this.errorMessage = false;
   }
+
+  // goTo = () => {
+  //   return this.props.history.push('/register');
+  // };
  
   handleSignIn(e) {
     e.preventDefault()
@@ -29,8 +35,11 @@ class Login extends React.Component {
         ).then((response)=>{
           if (response.code === 200){
             console.log('responde:', response.data.token);
-            this.props.handleSuccessfulAuth(response.data);
-            this.resetForm()
+            if (response.data.token) {
+              localStorage.setItem('token', JSON.stringify(response.data.token));
+              this.props.history.push('/home');
+              this.resetForm();
+            }
           }else if(response.code === 500){
             console.log('responde:', response);
             this.errorMessage(response.statusMessage);
@@ -46,7 +55,6 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <div disabled={!this.errorMessage}>ERROR:{this.errorMessage}</div>
         <form onSubmit={this.handleSignIn.bind(this)}>
           <h3>Sign in</h3>
           <input type="text" ref="username" placeholder="enter you username" />
