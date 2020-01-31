@@ -11,6 +11,7 @@ class Login extends React.Component {
       password: ''
     };
     this.errorMessage = false;
+    this.usuario = {}
   }
 
   // goTo = () => {
@@ -36,9 +37,11 @@ class Login extends React.Component {
           if (response.code === 200){
             console.log('responde:', response.data.token);
             if (response.data.token) {
-              localStorage.setItem('token', JSON.stringify(response.data.token));
-              this.props.history.push('/home');
+              // localStorage.setItem('token', JSON.stringify(response.data.token));
+              this.setItem('token', JSON.stringify(response.data.token));
+              this.set('token',response.data.token);
               this.resetForm();
+              this.props.history.push('/home');
             }
           }else if(response.code === 500){
             console.log('responde:', response);

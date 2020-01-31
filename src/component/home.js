@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Out from './Out';
+// import Out from './Out';
 import { withRouter } from 'react-router-dom';
 
 class Home extends React.Component {
@@ -13,7 +13,7 @@ class Home extends React.Component {
         return (
             <div>
                 <p>Usted está logueado</p>
-                <Out />
+                {/* <Out /> */}
             </div>
         );
     }
