@@ -11,7 +11,11 @@ class Login extends React.Component {
       password: ''
     };
     this.errorMessage = false;
-    this.usuario = {}
+    this.location = {
+      pathname: '/home',
+      state: { fromDashboard: true }
+    }
+
   }
 
   // goTo = () => {
@@ -38,10 +42,13 @@ class Login extends React.Component {
             console.log('responde:', response.data.token);
             if (response.data.token) {
               // localStorage.setItem('token', JSON.stringify(response.data.token));
-              this.setItem('token', JSON.stringify(response.data.token));
-              this.set('token',response.data.token);
-              this.resetForm();
-              this.props.history.push('/home');
+              // this.setItem('usuario', JSON.stringify(response.data));
+              // const Usuario = React.createContext(JSON.stringify(response.data));
+              // this.set('usuario',response.data);
+              // this.resetForm();
+              this.location.state = response.data;
+              console.log('location:::', this.location);
+              this.props.history.push(this.location);
             }
           }else if(response.code === 500){
             console.log('responde:', response);
