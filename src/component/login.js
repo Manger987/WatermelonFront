@@ -41,11 +41,6 @@ class Login extends React.Component {
           if (response.code === 200){
             console.log('responde:', response.data.token);
             if (response.data.token) {
-              // localStorage.setItem('token', JSON.stringify(response.data.token));
-              // this.setItem('usuario', JSON.stringify(response.data));
-              // const Usuario = React.createContext(JSON.stringify(response.data));
-              // this.set('usuario',response.data);
-              // this.resetForm();
               this.location.state = response.data;
               console.log('location:::', this.location);
               this.props.history.push(this.location);
