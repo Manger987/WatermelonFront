@@ -10,7 +10,10 @@ class Login extends React.Component {
       username: '',
       password: ''
     };
-    this.errorMessage = false;
+    this.state = { 
+      errorMessage : ''
+    }
+
     this.location = {
       pathname: '/home',
       state: { fromDashboard: true }
@@ -21,6 +24,21 @@ class Login extends React.Component {
   // goTo = () => {
   //   return this.props.history.push('/register');
   // };
+
+  showMessageError = () => {
+      if(this.state.errorMessage) {
+          return(
+              <div class="alert alert-danger" role="alert">
+                  <p>{`${this.state.errorMessage}!`}</p>
+              </div>
+          )
+      }
+      return false;
+  }
+
+  Error = (props) => {
+    return <p>Error: {this.props.errorMessage} </p>
+  } 
  
   handleSignIn(e) {
     e.preventDefault()
@@ -47,7 +65,8 @@ class Login extends React.Component {
             }
           }else if(response.code === 500){
             console.log('responde:', response);
-            this.errorMessage(response.statusMessage);
+            this.setState({errorMessage: response.statusMessage});
+            // this.errorMessage(response.statusMessage);
             alert(response.statusMessage);
           }
         })
@@ -60,8 +79,10 @@ class Login extends React.Component {
   render() {
     return (
       <div>
+        { this.state.errorMessage ? this.showMessageError() : '' }
         <form onSubmit={this.handleSignIn.bind(this)}>
           <h3>Sign in</h3>
+          {/* { this.showMessageError() } */}
           <input type="text" ref="username" placeholder="enter you username" />
           <input type="password" ref="password" placeholder="enter password" />
           <input type="submit" value="Login" />
