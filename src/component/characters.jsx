@@ -6,10 +6,10 @@ import { withRouter } from 'react-router-dom';
 class Character extends React.Component {
     render = (props) => {
         return (
-            <div key={this.props.character.key}>
+            <div className='row' key={this.props.character.key}>
                 <div className='col-md-6'>{ this.props.character.name}</div>
-                <div className='col-md-5'>{ this.props.character.location.name}</div>
-                <img src={`${this.props.character.image}`}/>>
+                <div className='col-md-3'>{ this.props.character.location.name}</div>
+                <img className='col-md-3' src={`${this.props.character.image}`}/>
             </div>    
         )
     }
