@@ -7,9 +7,11 @@ class Character extends React.Component {
     render = (props) => {
         return (
             <div className='row' key={this.props.character.key}>
-                <div className='col-md-6'>{ this.props.character.name}</div>
+                <div className='col-md-3'>{ this.props.character.name}</div>
+                <div className='col-md-2'>{ this.props.character.status}</div>
+                <div className='col-md-2'>{ this.props.character.gender}</div>
                 <div className='col-md-3'>{ this.props.character.location.name}</div>
-                <img className='col-md-3' src={`${this.props.character.image}`}/>
+                <img className='col-md-2' src={`${this.props.character.image}`}/>
             </div>    
         )
     }
